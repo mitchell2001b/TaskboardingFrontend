@@ -24,6 +24,7 @@ function RegisterForm()
    useEffect(() => {
     if(newAccount != {} || null)
     {
+      alert("test test");
       //alert(JSON.stringify(newAccount));
     }
    
