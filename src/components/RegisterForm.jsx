@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function RegisterForm()
 {
@@ -8,6 +8,14 @@ function RegisterForm()
 
    const [newAccount, setNewAccount] = useState({});
 
+   useEffect(() => {
+    if(newAccount != {})
+    {
+      alert(JSON.stringify(newAccount));
+    }
+   
+  }, [newAccount]);
+
    function HandleSubmit(e)
    {
       setNewAccount({
@@ -16,8 +24,7 @@ function RegisterForm()
          dateofbirth: newDateOfBirth
 
       })
-
-      alert(JSON.stringify(newAccount));
+      
       e.preventDefault();
    }
    return (
