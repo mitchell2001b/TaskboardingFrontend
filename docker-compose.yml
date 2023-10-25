@@ -4,7 +4,7 @@ services:
     container_name: taskboarding-frontend
     image: ghcr.io/mitchell2001b/taskboardingfrontend:main
     ports:
-      - "$REACT_LOCAL_PORT:$REACT_DOCKER_PORT"
+      - "${REACT_LOCAL_PORT}:${REACT_DOCKER_PORT}"
     networks:
       - semester6project_network
 
