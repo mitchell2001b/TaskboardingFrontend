@@ -1,15 +1,16 @@
 version: '3.8'
+
 services:
   taskboarding-frontend:
     container_name: taskboarding-frontend
     image: ghcr.io/mitchell2001b/taskboardingfrontend:main
+    env_file:
+      - .env
     ports:
       - "${REACT_LOCAL_PORT}:${REACT_DOCKER_PORT}"
     networks:
       - semester6project_network
 
-
- networks:
+networks:
   semester6project_network:
     external: true
-    name: semester6project_network
