@@ -7,11 +7,23 @@ function RegisterForm()
    const [newDateOfBirth, setNewDateOfBirth] = useState(new Date());
 
    const [newAccount, setNewAccount] = useState({});
+   const [data, setData] = useState(null);
+
+  useEffect(() => {
+    // Make a GET request to the API
+    axios.get('http://api-gateway:8585/test')
+      .then((response) => {
+        setData(response.data);
+      })
+      .catch((error) => {
+        console.error('Error fetching data:', error);
+      });
+  }, []);
 
    useEffect(() => {
-    if(newAccount != {})
+    if(newAccount != {} || null)
     {
-      alert(JSON.stringify(newAccount));
+      //alert(JSON.stringify(newAccount));
     }
    
   }, [newAccount]);
@@ -24,6 +36,8 @@ function RegisterForm()
          dateofbirth: newDateOfBirth
 
       })
+      alert(data);
+
       
       e.preventDefault();
    }
