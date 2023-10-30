@@ -12,13 +12,7 @@ function RegisterForm()
 
   useEffect(() => {
     // Make a GET request to the API
-    axios.get('http://localhost:8585/test')
-      .then((response) => {
-        setData(response.data);
-      })
-      .catch((error) => {
-        console.error('Error fetching data:', error);
-      });
+    
   }, []);
 
    useEffect(() => {
@@ -32,6 +26,14 @@ function RegisterForm()
 
    function HandleSubmit(e)
    {
+    axios.get('http://localhost:8585/test')
+      .then((response) => {
+        setData(response.data);
+      })
+      .catch((error) => {
+        console.error('Error fetching data:', error);
+      });
+      
       setNewAccount({
          email: newEmail,
          password: newPassword,
