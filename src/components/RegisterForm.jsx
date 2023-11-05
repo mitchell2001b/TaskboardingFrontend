@@ -34,6 +34,7 @@ function RegisterForm()
         
       })
       .catch((error) => {
+        alert(JSON.stringify(error))
         console.error('Error posting JSON data:', error);
       });
       
