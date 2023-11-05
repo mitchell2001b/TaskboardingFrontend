@@ -21,7 +21,7 @@ function RegisterForm()
         alert('Invalid date of birth');
         return;
       }
-      axios
+      /*axios
       .post('http://api-gateway:8585/login', givenData, {
         headers: {
           'Content-Type': 'application/json',
@@ -36,9 +36,13 @@ function RegisterForm()
       .catch((error) => {
         alert(JSON.stringify(error))
         console.error('Error posting JSON data:', error);
-      });
+      });*/
       
-      
+      axios.get('http://api-gateway:8585/test')
+      .then((response) => {
+        setData(response.data);
+        alert("yoohoo");
+      })
       
       e.preventDefault();
    }
