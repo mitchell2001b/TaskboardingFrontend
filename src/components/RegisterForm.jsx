@@ -22,7 +22,7 @@ function RegisterForm()
         return;
       }
       axios
-      .post('http://api-gateway:8585/register', givenData, {
+      .post('http://localhost:8585/register', givenData, {
         headers: {
           'Content-Type': 'application/json',
         },
