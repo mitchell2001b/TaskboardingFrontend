@@ -18,7 +18,7 @@ function RegisterForm()
       let givenData = {
         email: newEmail,
         password: newPassword,
-        dateofbirth: formattedDate,
+        dateofbirth: formattedDate.toString(),
 
       };
       if(!CheckDateInput(givenData.dateofbirth))
