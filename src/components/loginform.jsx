@@ -17,7 +17,7 @@ function LoginForm()
       };
 
       axios
-      .post('http://user-login-microservice:8282/api/accounts/login', givenData, {
+      .post('api-gateway:8585/api/accounts/login', givenData, {
         headers: {
           'Content-Type': 'application/json',
         },
