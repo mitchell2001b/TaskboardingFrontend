@@ -10,10 +10,15 @@ function RegisterForm()
 
    function HandleSubmit(e)
    {
+    const year = newDateOfBirth.getFullYear();
+    const month = (newDateOfBirth.getMonth() + 1).toString().padStart(2, '0');
+    const day = newDateOfBirth.getDate().toString().padStart(2, '0');
+    const formattedDate = `${year}-${month}-${day}`;
+
       let givenData = {
         email: newEmail,
         password: newPassword,
-        dateofbirth: newDateOfBirth.toString()
+        dateofbirth: formattedDate,
 
       };
       if(!CheckDateInput(givenData.dateofbirth))
