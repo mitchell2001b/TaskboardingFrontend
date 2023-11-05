@@ -12,7 +12,7 @@ function RegisterForm()
 
   useEffect(() => {
     // Make a GET request to the API
-    axios.get('http://localhost:8585/test')
+    axios.get('http://api-gateway:8585/test')
       .then((response) => {
         setData(response.data);
       })
