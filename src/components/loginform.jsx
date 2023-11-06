@@ -17,8 +17,9 @@ function LoginForm()
       };
 
       axios
-      .post('http://apigateway-api-gateway-1:8585/api/accounts/login', givenData, {
+      .post('http://localhost:8585/api/accounts/login', givenData, {
         headers: {
+          'method': 'post',
           'Content-Type': 'application/json',
         },
       })

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from 'axios';
+import CheckDateInput from "./DateCheck";
 
 function RegisterForm()
 {
@@ -7,39 +8,38 @@ function RegisterForm()
    const [newPassword, setNewPassword] = useState("");
    const [newDateOfBirth, setNewDateOfBirth] = useState(new Date());
 
-   const [newAccount, setNewAccount] = useState({});
-   const [data, setData] = useState(null);
-
-  useEffect(() => {
-    // Make a GET request to the API
-    axios.get('http://api-gateway:8585/test')
-      .then((response) => {
-        setData(response.data);
-      })
-      .catch((error) => {
-        console.error('Error fetching data:', error);
-      });
-  }, []);
-
-   useEffect(() => {
-    if(newAccount != {} || null)
-    {
-      alert("test test2");
-      //alert(JSON.stringify(newAccount));
-    }
-   
-  }, [newAccount]);
-
    function HandleSubmit(e)
    {
-      setNewAccount({
-         email: newEmail,
-         password: newPassword,
-         dateofbirth: newDateOfBirth
+      let givenData = {
+        email: newEmail,
+        password: newPassword,
+        dateofbirth: newDateOfBirth.toDateString()
 
+      };
+      if(!CheckDateInput(givenData.dateofbirth))
+      {
+        alert('Invalid date of birth');
+        return;
+      }
+      axios
+      .post('http://localhost:8585/register', givenData, {
+        headers: {
+          'method': 'post',
+          'Content-Type': 'application/json',
+        },
       })
-      alert(data);
-
+      .then((response) => {
+        // Handle the response here
+        //alert(JSON.stringify(givenData)); // You can display givenData if needed
+        alert(JSON.stringify(response.data)); // Display the response data
+        
+      })
+      .catch((error) => {
+        alert(JSON.stringify(error))
+        console.error('Error posting JSON data:', error);
+      });
+      
+      
       
       e.preventDefault();
    }
@@ -47,16 +47,16 @@ function RegisterForm()
     <>
          <form onSubmit={HandleSubmit}>
            <div>
-             <label htmlFor="email">email</label>
-             <input value={newEmail} onChange={e => setNewEmail(e.target.value)} type="text" id="email"/>
+             <label htmlFor="email"><style color="red">*</style>email</label>
+             <input value={newEmail} onChange={e => setNewEmail(e.target.value)} type="email" id="email" required/>
            </div>
            <div>
-             <label htmlFor="password">password</label>
-             <input value={newPassword} onChange={e => setNewPassword(e.target.value)} type="password" id="password"/>
+             <label htmlFor="password"><style color="red">*</style>password</label>
+             <input value={newPassword} onChange={e => setNewPassword(e.target.value)} type="password" id="password" required/>
            </div>
            <div>
-             <label htmlFor="dateofbirth">date of birth</label>
-             <input value={newDateOfBirth} onChange={e => setNewDateOfBirth(e.target.value)} type="date" id="dateofbirth"/>
+             <label htmlFor="dateofbirth"><style color="red">*</style>date of birth</label>
+             <input value={newDateOfBirth} onChange={e => setNewDateOfBirth(e.target.value)} type="date" id="dateofbirth" required/>
            </div>
            <button type='submit'>Submit</button>
          </form>
