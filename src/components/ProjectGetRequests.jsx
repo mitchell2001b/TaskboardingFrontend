@@ -8,7 +8,7 @@ export default function GetAllProjectsFromOwner(ownerId)
     };
 
     axios
-      .post('http://localhost:8888/api/projects/myprojects', owner, {
+      .post('http://localhost:8585/myprojects', owner, {
         headers: {
           'method': 'post',
           'Content-Type': 'application/json',
