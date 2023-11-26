@@ -25,7 +25,7 @@ function ProjectForm()
        };
        const jsonString = JSON.stringify(givenData);   
        const byteSize = new TextEncoder().encode(jsonString).length;
-       console.log(`Byte size of givenData: ${byteSize} bytes`);
+       //console.log(`Byte size of givenData: ${byteSize} bytes`);
        
        axios
        .post('http://localhost:8585/newproject', givenData, {
@@ -35,9 +35,8 @@ function ProjectForm()
          },
        })
        .then((response) => {
-         // Handle the response here
-         //alert(JSON.stringify(givenData)); // You can display givenData if needed
-         alert(JSON.stringify(response.data)); // Display the response data
+         
+         console.log(JSON.stringify(response.data)); 
          window.location.href = '/profile';
          
        })
