@@ -28,7 +28,7 @@ function ProjectForm()
        //console.log(`Byte size of givenData: ${byteSize} bytes`);
        
        axios
-       .post('http://localhost:8585/newproject', givenData, {
+       .post('http://api-gateway.localhost/newproject', givenData, {
          headers: {
            'method': 'post',
            'Content-Type': 'application/json',
