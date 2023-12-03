@@ -1,6 +1,6 @@
 #FROM node:18-alpine as base
 
-FROM cypress/browsers:node18.4.0 as base
+FROM cypress/base:18 as base
 
 WORKDIR /app
 
