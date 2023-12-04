@@ -4,6 +4,9 @@ FROM cypress/base:18.6.0
 
 WORKDIR /app
 
+# Install bash
+RUN apk add --no-cache bash
+
 COPY ./package*.json ./
 
 RUN npm install
