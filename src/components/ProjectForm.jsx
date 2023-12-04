@@ -25,6 +25,7 @@ function ProjectForm()
        };
        const jsonString = JSON.stringify(givenData);   
        const byteSize = new TextEncoder().encode(jsonString).length;
+       alert(JSON.stringify(givenData));
        //console.log(`Byte size of givenData: ${byteSize} bytes`);
        
        axios
@@ -35,7 +36,7 @@ function ProjectForm()
          },
        })
        .then((response) => {
-         
+
          console.log(JSON.stringify(response.data)); 
          window.location.href = '/profile';
          

@@ -1,11 +1,12 @@
 describe('Project Form End-to-End Test', () => {
   it('should create a new project successfully', () => {
-   // cy.visit('http://localhost:3001/project/create');
+   //cy.visit('http://localhost:3001/project/create');
    cy.visit('http://taskboarding-frontend.localhost:9080/project/create');
-   
+   //cy.visit('http://taskboarding-frontend-service:80/profile');
+   //yarn cy.visit('http://10.42.0.98:3001/profile');
 
     // Intercept the HTTP request and respond with a known message
-    cy.intercept('POST', 'http://api-gateway.localhost:9080/newproject').as('postRequest');
+    cy.intercept('POST', 'https://api-gateway.localhost:9080/newproject').as('postRequest');
     
     cy.window().then((win) => {
       cy.spy(win.console, 'log').as('consoleLog');
