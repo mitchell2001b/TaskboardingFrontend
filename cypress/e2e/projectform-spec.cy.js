@@ -1,8 +1,8 @@
 describe('Project Form End-to-End Test', () => {
   it('should create a new project successfully', () => {
    //cy.visit('http://localhost:3001/project/create');
-   cy.visit('http://taskboarding-frontend.localhost:9080/project/create');
-   //cy.visit('http://taskboarding-frontend-service:80/profile');
+   //cy.visit('http://taskboarding-frontend.localhost:9080/project/create');
+   cy.visit('http://taskboarding-frontend-service:80/create');
    //yarn cy.visit('http://10.42.0.98:3001/profile');
 
     // Intercept the HTTP request and respond with a known message
