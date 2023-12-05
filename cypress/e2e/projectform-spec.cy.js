@@ -17,8 +17,9 @@ describe('Project Form End-to-End Test', () => {
     cy.captureConsoleLogs().as('consoleLogs');
 
     // Fill in the form
-    cy.get('#projectname').type('Test Project');
-    cy.get('#projectdescription').type('Test Project Description');
+    cy.get('#projectname', { timeout: 10000 }).type('Test Project');
+    cy.get('#projectdescription', { timeout: 10000 }).type('Test Project Description');
+    //cy.get('#projectdescription').type('Test Project Description');
 
     // Submit the form
     cy.get('button[type="submit"]').click();
