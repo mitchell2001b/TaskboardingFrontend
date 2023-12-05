@@ -5,6 +5,7 @@ describe('Project Form End-to-End Test', () => {
    cy.visit('http://taskboarding-frontend-service:80/create');
    //yarn cy.visit('http://10.42.0.98:3001/profile');
 
+   cy.wait(10000);
     // Intercept the HTTP request and respond with a known message
     //cy.intercept('POST', 'https://api-gateway.localhost:9080/newproject').as('postRequest');
     cy.intercept('POST', 'https://api-gateway-service:80/newproject').as('postRequest');

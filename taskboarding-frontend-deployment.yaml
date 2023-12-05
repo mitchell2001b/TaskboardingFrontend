@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: taskboarding-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: taskboarding-frontend
+  template:
+    metadata:
+      labels:
+        app: taskboarding-frontend
+    spec:
+      containers:
+        - name: taskboarding-frontend
+          image: ghcr.io/mitchell2001b/taskboardingfrontend:main
+          ports:
+            - containerPort: 3001
+          imagePullPolicy: Always
+      imagePullSecrets:
+        - name: ghcr-secret
