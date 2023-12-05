@@ -2,10 +2,9 @@ describe('Project Form End-to-End Test', () => {
   it('should create a new project successfully', () => {
    //cy.visit('http://localhost:3001/project/create');
    //cy.visit('http://taskboarding-frontend.localhost:9080/project/create');
-   cy.visit('http://taskboarding-frontend-service:80/create');
+   cy.visit('http://taskboarding-frontend-service:80/project/create');
    //yarn cy.visit('http://10.42.0.98:3001/profile');
 
-   cy.wait(10000);
     // Intercept the HTTP request and respond with a known message
     //cy.intercept('POST', 'https://api-gateway.localhost:9080/newproject').as('postRequest');
     cy.intercept('POST', 'https://api-gateway-service:80/newproject').as('postRequest');
@@ -16,15 +15,12 @@ describe('Project Form End-to-End Test', () => {
     
     cy.captureConsoleLogs().as('consoleLogs');
 
-    cy.get('#projectname', { timeout: 10000 }).should('exist').type('Test Project');
-
     // Fill in the form
-    //cy.get('#projectname', { timeout: 10000 }).type('Test Project');
-    //cy.get('#projectdescription', { timeout: 10000 }).type('Test Project Description');
-    //cy.get('#projectdescription').type('Test Project Description');
+    cy.get('#projectname').type('Test Project');
+    cy.get('#projectdescription').type('Test Project Description');
 
     // Submit the form
-    //cy.get('button[type="submit"]').click();
+    cy.get('button[type="submit"]').click();
 
     // Check for the correct response body
     cy.wait('@postRequest').its('response').then((response) => {
