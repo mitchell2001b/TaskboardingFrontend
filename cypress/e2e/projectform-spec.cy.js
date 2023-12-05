@@ -6,8 +6,8 @@ describe('Project Form End-to-End Test', () => {
    //yarn cy.visit('http://10.42.0.98:3001/profile');
 
     // Intercept the HTTP request and respond with a known message
-    cy.intercept('POST', 'https://api-gateway.localhost:9080/newproject').as('postRequest');
-    //cy.intercept('POST', 'https://api-gateway-service:80/newproject').as('postRequest');
+   // cy.intercept('POST', 'https://api-gateway.localhost:9080/newproject').as('postRequest');
+    cy.intercept('POST', 'http://api-gateway-service:80/newproject').as('postRequest');
        
     cy.window().then((win) => {
       cy.spy(win.console, 'log').as('consoleLog');
