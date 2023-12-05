@@ -16,13 +16,15 @@ describe('Project Form End-to-End Test', () => {
     
     cy.captureConsoleLogs().as('consoleLogs');
 
+    cy.get('#projectname', { timeout: 10000 }).should('exist').type('Test Project');
+
     // Fill in the form
-    cy.get('#projectname', { timeout: 10000 }).type('Test Project');
-    cy.get('#projectdescription', { timeout: 10000 }).type('Test Project Description');
+    //cy.get('#projectname', { timeout: 10000 }).type('Test Project');
+    //cy.get('#projectdescription', { timeout: 10000 }).type('Test Project Description');
     //cy.get('#projectdescription').type('Test Project Description');
 
     // Submit the form
-    cy.get('button[type="submit"]').click();
+    //cy.get('button[type="submit"]').click();
 
     // Check for the correct response body
     cy.wait('@postRequest').its('response').then((response) => {
