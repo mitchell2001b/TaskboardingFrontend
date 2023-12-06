@@ -6,8 +6,8 @@ describe('Project Form End-to-End Test', () => {
    //yarn cy.visit('http://10.42.0.98:3001/profile');
 
     // Intercept the HTTP request and respond with a known message
-    cy.intercept('POST', 'http://api-gateway.localhost:9080/newproject').as('postRequest');
-    //cy.intercept('POST', 'http://api-gateway-service:80/newproject').as('postRequest');
+    //cy.intercept('POST', 'http://api-gateway.localhost:9080/newproject').as('postRequest');
+    cy.intercept('POST', 'http://api-gateway-service:80/newproject').as('postRequest');
        
     cy.window().then((win) => {
       cy.spy(win.console, 'log').as('consoleLog');
@@ -26,9 +26,9 @@ describe('Project Form End-to-End Test', () => {
     cy.wait('@postRequest').then((interception) => {
       expect(interception.response.statusCode).to.equal(200);
       console.log('Interception:', interception);
-      //console.log('Response Body:', interception.response.body);
+      console.log('Response Body:', interception.response.body);
       cy.log('Check for the correct response body');
-      //expect(interception.response.body).to.deep.equal('Project created successfully');
+      expect(interception.response.body).to.deep.equal('Project created successfully');
       cy.url().should('include', '/profile');
     });
 
