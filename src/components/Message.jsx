@@ -14,7 +14,7 @@ function Message()
     return (
         <>
             <h1>Hello semester 6</h1>
-            {1 === 2 ? <p>test test test ssssssssssssssssssssssssss</p> : null}
+            {1 === 2 ? <p>test test test sssssssssssssssssssssss vooorrrrrr nieuwe workflowsss</p> : null}
             
         
         </>
