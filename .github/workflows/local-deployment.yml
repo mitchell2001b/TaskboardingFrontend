@@ -1,4 +1,4 @@
-name: Deploy to Local Kubernetes
+name: Deploy to Kubernetes
 
 on:
   push:
@@ -15,7 +15,8 @@ jobs:
 
     - name: Install k3d
       run: |
-        wget -q -O - https://raw.githubusercontent.com/rancher/k3d/main/install.sh | bash
+        wget -q -O k3d https://github.com/rancher/k3d/releases/download/v4.4.5/k3d-linux-amd64
+        chmod +x k3d
         sudo mv k3d /usr/local/bin/
 
     - name: Check if k3d cluster exists
