@@ -13,6 +13,11 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v2
 
+    - name: Install k3d
+      run: |
+        wget -q -O - https://raw.githubusercontent.com/rancher/k3d/main/install.sh | bash
+        sudo mv k3d /usr/local/bin/
+
     - name: Check if k3d cluster exists
       id: check_cluster
       run: |
