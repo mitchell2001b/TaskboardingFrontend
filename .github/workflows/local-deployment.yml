@@ -35,7 +35,7 @@ jobs:
       run: kubectl get events --context=k3d-semester6
 
     - name: Get Deployment Details
-       run: |
+      run: |
              kubectl describe deployment/taskboarding-frontend --context=k3d-semester6
              kubectl get pods --context=k3d-semester6
 
