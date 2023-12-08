@@ -31,6 +31,10 @@ jobs:
     - name: Apply Kubernetes manifests
       run: kubectl apply -f taskboarding-frontend-deployment.yaml --context=k3d-semester6
 
+    - name: Check Deployment Events
+      run: kubectl get events --context=k3d-semester6
+
+
     - name: Wait for deployment to finish
       run: kubectl rollout status deployment/taskboarding-frontend --context=k3d-semester6
 
