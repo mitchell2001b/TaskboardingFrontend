@@ -45,8 +45,8 @@ jobs:
     - name: Check Metrics Server Status
       run: kubectl get pods -n kube-system --context=k3d-semester6
 
-   - name: Display Helm Install Traefik Logs
-     run: |
+    - name: Display Helm Install Traefik Logs
+      run: |
               # Wait for any pod in kube-system namespace to be ready
               kubectl wait --for=condition=Ready pod -n kube-system --all --timeout=5m --context=k3d-semester6 || true
 
