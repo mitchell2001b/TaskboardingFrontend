@@ -1,0 +1,48 @@
+name: Deploy to Local Kubernetes
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Check if k3d cluster exists
+      id: check_cluster
+      run: |
+        if k3d cluster list | grep -q semester6; then
+          echo "Cluster exists"
+          echo "::set-output name=cluster_exists::true"
+        else
+          echo "Cluster does not exist"
+          echo "::set-output name=cluster_exists::false"
+        fi
+
+    - name: Set up k3d cluster if it doesn't exist
+      if: steps.check_cluster.outputs.cluster_exists == 'false'
+      run: k3d cluster create semester6 --servers 1 --agents 1 --port 9080:80@loadbalancer
+
+    - name: Configure kubectl
+      run: |
+        kubectl config set-cluster semester6-cluster --server=http://localhost:9080
+        kubectl config set-context semester6 --cluster=semester6-cluster
+        kubectl config use-context semester6
+
+    - name: Delete existing Deployment
+      run: kubectl delete deployment taskboarding-frontend || true
+
+    - name: Apply Kubernetes manifests
+      run: kubectl apply -f path/to/taskboarding-frontend-deployment.yaml
+
+    - name: Wait for deployment to finish
+      run: kubectl rollout status deployment/taskboarding-frontend
+
+    - name: Clean up k3d cluster if it was created
+      if: steps.check_cluster.outputs.cluster_exists == 'false'
+      run: k3d cluster delete semester6
