@@ -25,6 +25,10 @@ jobs:
     - name: Set kubectl context to k3d-semester6
       run: kubectl config use-context k3d-semester6
 
+    - name: Wait for Metrics Server
+      run: |
+           kubectl wait --for=condition=Ready pod -n kube-system -l k8s-app=metrics-server --timeout=5m --context=k3d-semester6
+
     - name: Delete existing Deployment
       run: kubectl delete deployment taskboarding-frontend --context=k3d-semester6 || true
 
