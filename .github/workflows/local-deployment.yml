@@ -29,7 +29,10 @@ jobs:
       run:   kubectl wait --for=condition=Ready pod -n kube-system -l k8s-app=metrics-server --timeout=5m --context=k3d-semester6
 
     - name: Display Helm Install Traefik Logs
-      run: kubectl logs helm-install-traefik-bb48h -n kube-system --context=k3d-semester6
+      run: |
+              POD_NAME=$(kubectl get pods -n kube-system --selector=app=helm-install-traefik -o jsonpath="{.items[0].metadata.name}" --context=k3d-semester6)
+              kubectl logs $POD_NAME -n kube-system --context=k3d-semester6
+
   
     - name: Delete existing Deployment
       run: kubectl delete deployment taskboarding-frontend --context=k3d-semester6 || true
