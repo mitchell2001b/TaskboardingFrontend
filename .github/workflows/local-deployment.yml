@@ -45,24 +45,6 @@ jobs:
     - name: Check Metrics Server Status
       run: kubectl get pods -n kube-system --context=k3d-semester6
 
-    - name: Display Helm Install Traefik Logs
-      run: |
-              # Wait for any pod in kube-system namespace to be ready
-              kubectl wait --for=condition=Ready pod -n kube-system --all --timeout=5m --context=k3d-semester6 || true
-
-              # Retrieve the pod names
-              POD_NAMES=$(kubectl get pods -n kube-system --selector=app=helm-install-traefik -o jsonpath="{.items[*].metadata.name}" --context=k3d-semester6 2>/dev/null)
-
-              if [ -n "$POD_NAMES" ]; then
-                # Iterate over each pod and display logs
-                for POD_NAME in $POD_NAMES; do
-                  echo "Logs for $POD_NAME:"
-                  kubectl logs $POD_NAME -n kube-system --context=k3d-semester6
-                  echo "------------------------"
-                done
-              else
-                echo "No pods found with label app=helm-install-traefik"
-              fi
 
     - name: Clean up k3d cluster
       run: k3d cluster delete semester6
