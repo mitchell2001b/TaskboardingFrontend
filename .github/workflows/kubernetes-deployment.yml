@@ -1,0 +1,29 @@
+name: Deploy Kubernetes
+
+on:
+  push:
+    branches:
+      - main  
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up kubectl
+      run: |
+        mkdir -p $HOME/.kube
+        echo "$KUBE_CONFIG" > $HOME/.kube/config
+        kubectl config use-context k3d-semester6
+
+    - name: Delete existing deployment
+      run: kubectl delete deployment taskboarding-frontend-deployment  || true
+
+    - name: Apply updated deployment
+      run: kubectl apply -f taskboarding-frontend-deployment.yaml
+    ```
+
+
