@@ -24,6 +24,6 @@ jobs:
 
     - name: Apply updated deployment
       run: kubectl apply -f taskboarding-frontend-deployment.yaml
-    ```
+    
 
 
