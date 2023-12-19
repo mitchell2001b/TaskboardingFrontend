@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: taskboarding-frontend-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/ingress-class: nginx  # Verouderde annotatie
+spec:
+  ingressClassName: nginx  # Nieuwe notatie voor IngressClass
+  rules:
+    - host: taskboarding-frontend.azure
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: taskboarding-frontend-service
+                port:
+                  number: 80
