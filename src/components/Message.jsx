@@ -13,7 +13,7 @@ function Message()
     console.log(`Byte size of givenData: ${byteSize} bytes`);
     return (
         <>
-            <h1>Hello semester 6 deployment test aks</h1>
+            <h1>Hello semester 6 deployment test akss</h1>
             {1 === 2 ? <p>deployment test</p> : null}
             
         
