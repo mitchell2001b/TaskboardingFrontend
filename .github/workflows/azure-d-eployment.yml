@@ -8,6 +8,7 @@ on:
 
 jobs:
   deploy-aks:
+   
     runs-on: ubuntu-latest
 
     steps:
@@ -19,12 +20,15 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y azure-cli
 
-      - name: Log into Azure
-        run: az login --identity
-        
+      - name: Set up Azure CLI
+        run: |
+          az login --service-principal --username ${{ secrets.AZURE_SP_CLIENT_ID }} --password ${{ secrets.AZURE_SP_CLIENT_SECRET }} --tenant ${{ secrets.AZURE_SP_TENANT_ID }}
+          az account set --subscription ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
       - name: Configure kubectl
-        run: az aks get-credentials --resource-group semester6 --name schoolcluster
+        run: |
+          az aks get-credentials --resource-group semester6 --name schoolcluster
+          kubectl config use-context schoolcluster
 
       - name: Deploy to AKS
         run: kubectl apply -f taskboarding-frontend-deployment.yaml
