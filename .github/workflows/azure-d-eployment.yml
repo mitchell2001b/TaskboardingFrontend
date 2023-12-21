@@ -30,6 +30,10 @@ jobs:
           az aks get-credentials --resource-group semester6 --name schoolcluster
           kubectl config use-context schoolcluster
 
+      - name: Delete existing deployment
+        run: kubectl delete deployment taskboarding-frontend
+
+
       - name: Deploy to AKS
         run: kubectl apply -f taskboarding-frontend-deployment.yaml
 
