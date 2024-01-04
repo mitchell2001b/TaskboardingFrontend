@@ -5,7 +5,7 @@ export default function GetPersonalData(accountId)
   return new Promise((resolve, reject) => {
     
     axios
-      .get(`http://localhost:8585/mydata/${accountId}`, {
+      .get(`http://api-gateway.localhost:9080/mydata/${accountId}`, {
         headers: {
           'method': 'GET',
           'Content-Type': 'application/json',

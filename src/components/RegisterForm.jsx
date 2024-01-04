@@ -22,16 +22,15 @@ function RegisterForm()
         return;
       }
       axios
-      .post('http://localhost:8585/register', givenData, {
+      .post('http://api-gateway.localhost:9080/register', givenData, {
         headers: {
           'method': 'post',
           'Content-Type': 'application/json',
         },
       })
       .then((response) => {
-        // Handle the response here
-        //alert(JSON.stringify(givenData)); // You can display givenData if needed
-        alert(JSON.stringify(response.data)); // Display the response data
+      
+        alert(JSON.stringify(response.data)); 
         
       })
       .catch((error) => {

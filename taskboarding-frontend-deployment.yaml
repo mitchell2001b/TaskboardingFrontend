@@ -17,6 +17,13 @@ spec:
           image: ghcr.io/mitchell2001b/taskboardingfrontend:main
           ports:
             - containerPort: 3001
+          resources:
+            requests:
+              cpu: "250m"
+              memory: "64Mi"
+            limits:
+              cpu: "500m"
+              memory: "128Mi"
           imagePullPolicy: Always
       imagePullSecrets:
         - name: ghcr-secret
