@@ -7,7 +7,7 @@ import { redirect } from "react-router-dom";
 function LoginForm()
 {
     const [newEmail, setNewEmail] = useState("");
-   const [newPassword, setNewPassword] = useState("");
+    const [newPassword, setNewPassword] = useState("");
 
    function HandleSubmit(e)
    {
