@@ -17,17 +17,19 @@ function LoginForm()
       };
 
       axios
-      .post('http://localhost:8585/api/accounts/login', givenData, {
+      .post('http://api-gateway.localhost:9080/login', givenData, {
         headers: {
           'method': 'post',
           'Content-Type': 'application/json',
         },
       })
       .then((response) => {
-        // Handle the response here
-        //alert(JSON.stringify(givenData)); // You can display givenData if needed
-        alert(JSON.stringify(response.data)); // Display the response data
-        window.location.href = '/profile';
+        alert(JSON.stringify(response.data)); 
+        const { access_token, refresh_token } = response.data;
+
+        localStorage.setItem('access_token', access_token);
+        localStorage.setItem('refresh_token', refresh_token);
+        //window.location.href = '/profile';
         
       })
       .catch((error) => {

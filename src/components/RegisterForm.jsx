@@ -10,12 +10,14 @@ function RegisterForm()
 
    function HandleSubmit(e)
    {
+      console.log('Date of Birth:', newDateOfBirth);
       let givenData = {
         email: newEmail,
         password: newPassword,
-        dateofbirth: newDateOfBirth.toDateString()
+        dateofbirth: newDateOfBirth,
 
       };
+      
       if(!CheckDateInput(givenData.dateofbirth))
       {
         alert('Invalid date of birth');
@@ -38,23 +40,21 @@ function RegisterForm()
         console.error('Error posting JSON data:', error);
       });
       
-      
-      
       e.preventDefault();
    }
    return (
     <>
          <form onSubmit={HandleSubmit}>
            <div>
-             <label htmlFor="email"><style color="red">*</style>email</label>
+             <label htmlFor="email">email</label>
              <input value={newEmail} onChange={e => setNewEmail(e.target.value)} type="email" id="email" required/>
            </div>
            <div>
-             <label htmlFor="password"><style color="red">*</style>password</label>
+             <label htmlFor="password">password</label>
              <input value={newPassword} onChange={e => setNewPassword(e.target.value)} type="password" id="password" required/>
            </div>
            <div>
-             <label htmlFor="dateofbirth"><style color="red">*</style>date of birth</label>
+             <label htmlFor="dateofbirth">date of birth</label>
              <input value={newDateOfBirth} onChange={e => setNewDateOfBirth(e.target.value)} type="date" id="dateofbirth" required/>
            </div>
            <button type='submit'>Submit</button>
