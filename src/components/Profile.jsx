@@ -99,7 +99,7 @@ function Profile()
             </table>
           </>
         ) : (
-          <p>Please login to view your profile.</p>
+          <p>Please login to view your profile..</p>
         )}     
      </>
 
