@@ -3,7 +3,7 @@ import axios from 'axios';
 import GetAllProjectsFromOwner from "./ProjectGetRequests";
 import GetPersonalData from "./GetUserDataRequest";
 import DeleteAccount from "./UserDeleteRequest";
-import jwtDecode from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode';
 
 function Profile()
 {
