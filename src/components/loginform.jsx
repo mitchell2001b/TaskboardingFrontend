@@ -29,7 +29,7 @@ function LoginForm()
 
         localStorage.setItem('access_token', access_token);
         localStorage.setItem('refresh_token', refresh_token);
-        //window.location.href = '/profile';
+        window.location.href = '/profile';
         
       })
       .catch((error) => {

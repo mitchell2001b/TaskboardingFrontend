@@ -3,15 +3,19 @@ import axios from 'axios';
 import GetAllProjectsFromOwner from "./ProjectGetRequests";
 import GetPersonalData from "./GetUserDataRequest";
 import DeleteAccount from "./UserDeleteRequest";
+import jwtDecode from 'jwt-decode';
 
 function Profile()
 {
   const [projectsData, setProjectsData] = useState(null);
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [Email, setEmail] = useState("");
+  const [id, setId] = useState(0);
 
   const accountId = 1;
 
   const handleGetPersonalData = () => {
-    GetPersonalData(accountId)
+    GetPersonalData(id)
       .then((gdprData) => {
         
         console.log('GDPR Data:', gdprData);
@@ -24,7 +28,7 @@ function Profile()
   };
 
   const handleAccountDeletion = () => {
-    DeleteAccount(accountId)
+    DeleteAccount(id)
       .then((responseData) => {
         alert(`deletion: ${responseData}`);
       })
@@ -34,6 +38,19 @@ function Profile()
       });
   };
   useEffect(() => {
+    const accessToken = localStorage.getItem('access_token');
+    if (accessToken)
+    {
+      const decodedToken = jwtDecode(accessToken);
+      const userEmail = decodedToken.email;
+      const userId = decodedToken.id;
+
+      setEmail(userEmail);
+      setId(userId);
+      setLoggedIn(!!userEmail && !!userId);
+
+    }
+
     const fetchData = async () => {
       try 
       {
@@ -46,14 +63,16 @@ function Profile()
       }
     };
 
-    if (!projectsData) 
+    if (!projectsData && loggedIn) 
     {
       fetchData();
     }
-},[projectsData]);
+},[projectsData, loggedIn]);
 
     return (
         <>
+        {loggedIn ? (
+           <>
             <h1>profile</h1>
             <td><button type="button" onClick={handleGetPersonalData}>Get GDPR data</button></td>
             <td><button type="button" onClick={handleAccountDeletion}>Delete account</button></td>  
@@ -78,8 +97,11 @@ function Profile()
                     }
                 </tbody>
             </table>
-        
-        </>
+          </>
+        ) : (
+          <p>Please login to view your profile.</p>
+        )}     
+     </>
 
     ); 
 }

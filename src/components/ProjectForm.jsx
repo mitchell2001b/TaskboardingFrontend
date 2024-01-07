@@ -1,18 +1,38 @@
 import { useState, useEffect } from "react";
 import axios from 'axios';
+import jwtDecode from 'jwt-decode';
 
 function ProjectForm()
 {
 
     const [newProjectName, setNewProjectName] = useState("");
     const [newProjectDescription, setNewProjectDescription] = useState("");
+    const [Email, setEmail] = useState("");
+    const [id, setId] = useState(0);
+    
+    
+    useEffect(() => {
+        
+      const accessToken = localStorage.getItem('access_token');
+      if (accessToken) 
+      {
+        const decodedToken = jwtDecode(accessToken);
+        const userEmail = decodedToken.email;
+        const userId = decodedToken.id;
+  
+        setEmail(userEmail);
+        setId(userId);
+        
+      }
+    }, []);
 
-    let account = {
-      id: "1",
-      email: "test@gmail.com",
-    };
     function HandleSubmit(e)
     {
+      let account = {
+        id: userId,
+        email: userEmail,
+      };
+
       if(newProjectDescription == null || newProjectName == null)
       {
         alert("Please enter a value");
