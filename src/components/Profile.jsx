@@ -54,7 +54,7 @@ function Profile()
     const fetchData = async () => {
       try 
       {
-        const data = await GetAllProjectsFromOwner(accountId);
+        const data = await GetAllProjectsFromOwner(id);
         setProjectsData(data);
       } 
       catch(error)
