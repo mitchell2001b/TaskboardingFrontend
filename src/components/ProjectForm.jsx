@@ -7,8 +7,8 @@ function ProjectForm()
 
     const [newProjectName, setNewProjectName] = useState("");
     const [newProjectDescription, setNewProjectDescription] = useState("");
-    const [Email, setEmail] = useState("");
-    const [id, setId] = useState(0);
+    const [emailAccount, setEmailAccount] = useState("");
+    const [idAccount, setIdAccount] = useState(0);
     
     
     useEffect(() => {
@@ -20,8 +20,8 @@ function ProjectForm()
         const userEmail = decodedToken.email;
         const userId = decodedToken.id;
   
-        setEmail(userEmail);
-        setId(userId);
+        setEmailAccount(userEmail);
+        setIdAccount(userId);
         
       }
     }, []);
@@ -29,8 +29,8 @@ function ProjectForm()
     function HandleSubmit(e)
     {
       let account = {
-        id: userId,
-        email: userEmail,
+        id: idAccount,
+        email: emailAccount,
       };
 
       if(newProjectDescription == null || newProjectName == null)
