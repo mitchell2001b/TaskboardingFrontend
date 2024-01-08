@@ -5,7 +5,7 @@ export default function DeleteAccount(accountId)
   return new Promise((resolve, reject) => {
     
     axios
-      .delete(`http://51.13.29.1/gateway/delete/${accountId}`, {
+      .delete(`http://api-gateway.localhost:9080/delete/${accountId}`, {
         headers: {
           'method': 'DELETE',
           'Content-Type': 'application/json',
