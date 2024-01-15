@@ -12,14 +12,14 @@ export default function DeleteAccount(accountId)
         },
       })
       .then((response) => {
-        // Handle the response here
+        
         console.log(response.data);
         const data = response.data;
-        resolve(data); // Resolve the Promise with the data
+        resolve(data); 
       })
       .catch((error) => {
         console.error('Error posting JSON data:', error);
-        reject(error); // Reject the Promise with the error
+        reject(error); 
       });
   }); 
 }

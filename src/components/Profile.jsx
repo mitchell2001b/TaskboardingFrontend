@@ -4,6 +4,7 @@ import GetAllProjectsFromOwner from "./ProjectGetRequests";
 import GetPersonalData from "./GetUserDataRequest";
 import DeleteAccount from "./UserDeleteRequest";
 import { jwtDecode } from 'jwt-decode';
+import { CheckAndRefreshToken } from "./RefreshTokenFunctions";
 
 function Profile()
 {
@@ -54,8 +55,11 @@ function Profile()
     const fetchData = async () => {
       try 
       {
+        const refreshData = await CheckAndRefreshToken();
         const data = await GetAllProjectsFromOwner(id);
+        console.log(refreshData);
         setProjectsData(data);
+        
       } 
       catch(error)
       {
