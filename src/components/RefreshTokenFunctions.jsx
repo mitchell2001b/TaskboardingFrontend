@@ -46,7 +46,7 @@ export const CheckAndRefreshToken = () => {
 
         if (expirationTime - Date.now() <= 10 * 60 * 1000 || expirationTime < Date.now()) 
         {
-            refreshAccessToken(refreshToken)
+            RefreshAccessToken(refreshToken)
             .then((response) => {
                 resolve(response.data);
             })
