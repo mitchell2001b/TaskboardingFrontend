@@ -47,7 +47,18 @@ function ProjectForm()
        const byteSize = new TextEncoder().encode(jsonString).length;
        alert(JSON.stringify(givenData));
        //console.log(`Byte size of givenData: ${byteSize} bytes`);
-       
+       const fetchData = async () => {
+        try 
+        {
+          const refreshData = await CheckAndRefreshToken();
+          console.log(refreshData);        
+        } 
+        catch(error)
+        {
+          console.error(error);
+        }
+      };
+      fetchData();
        axios
        .post('http://api-gateway.localhost:9080/newproject', givenData, {
          headers: {
