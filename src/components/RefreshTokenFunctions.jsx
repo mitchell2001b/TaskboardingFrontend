@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { jwt_decode } from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode';
 
 
 export const RefreshAccessToken = (refreshToken) => {
@@ -41,7 +41,7 @@ export const CheckAndRefreshToken = () => {
   if (refreshToken)
   {
         const accessToken = localStorage.getItem('access_token');
-        const decodedToken = jwt_decode(accessToken);
+        const decodedToken = jwtDecode(accessToken);
         const expirationTime = decodedToken.exp * 1000; 
 
         if (expirationTime - Date.now() <= 10 * 60 * 1000 || expirationTime < Date.now()) 
