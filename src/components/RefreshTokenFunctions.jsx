@@ -44,7 +44,7 @@ export const CheckAndRefreshToken = () => {
         const decodedToken = jwt_decode(accessToken);
         const expirationTime = decodedToken.exp * 1000; 
 
-        if (expirationTime - Date.now() <= 5 * 60 * 1000) 
+        if (expirationTime - Date.now() <= 10 * 60 * 1000 || expirationTime < Date.now()) 
         {
             refreshAccessToken(refreshToken)
             .then((response) => {
