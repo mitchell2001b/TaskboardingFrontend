@@ -55,6 +55,7 @@ function Profile()
     const fetchData = async () => {
       try 
       {
+        console.log(id);
         const refreshData = await CheckAndRefreshToken();
         const data = await GetAllProjectsFromOwner(id);
         console.log(refreshData);
