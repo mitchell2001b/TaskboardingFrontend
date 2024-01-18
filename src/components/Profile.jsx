@@ -56,7 +56,7 @@ function Profile()
       try 
       {
         console.log(id);
-        //const refreshData = await CheckAndRefreshToken();
+        const refreshData = await CheckAndRefreshToken();
         const data = await GetAllProjectsFromOwner(id);
         //console.log(refreshData);
         console.log("test");

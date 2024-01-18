@@ -43,6 +43,7 @@ export const CheckAndRefreshToken = () => {
         const accessToken = localStorage.getItem('access_token');
         const decodedToken = jwtDecode(accessToken);
         const expirationTime = decodedToken.exp * 1000; 
+        console.log("Checking for refresh");
 
         if (expirationTime - Date.now() <= 10 * 60 * 1000 || expirationTime < Date.now()) 
         {
@@ -54,6 +55,8 @@ export const CheckAndRefreshToken = () => {
                 reject(error);
             });
         }
+
+        resolve("no refresh needed");
   }
 
     }); 
