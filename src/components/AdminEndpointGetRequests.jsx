@@ -6,9 +6,9 @@ export default function AccessAdminEndpoint()
     
 
     axios
-      .post('http://api-gateway.localhost:9080/projectmodel', {
+      .get('http://api-gateway.localhost:9080/projectmodel', {
         headers: {
-          'method': 'post',
+          'method': 'GET',
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
         },
