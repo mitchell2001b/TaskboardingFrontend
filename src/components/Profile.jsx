@@ -5,6 +5,7 @@ import GetPersonalData from "./GetUserDataRequest";
 import DeleteAccount from "./UserDeleteRequest";
 import { jwtDecode } from 'jwt-decode';
 import { CheckAndRefreshToken } from "./RefreshTokenFunctions";
+import AccessAdminEndpoint from "./AdminEndpointGetRequests";
 
 function Profile()
 {
@@ -24,6 +25,18 @@ function Profile()
       })
       .catch((error) => {
         console.error('Error fetching personal data:', error);
+        
+      });
+  };
+
+  const handleAccessAdminEndpoint= () => {
+    AccessAdminEndpoint()
+      .then((response) => {
+        
+        alert(`response: ${response}`);
+      })
+      .catch((error) => {
+        console.error('Error accessing admin endpoint', error);
         
       });
   };
@@ -82,6 +95,7 @@ function Profile()
            <>
             <h1>profile</h1>
             <td><button type="button" onClick={handleGetPersonalData}>Get GDPR data</button></td>
+            <td><button type="button" onClick={handleAccessAdminEndpoint}>Access admin endpoint</button></td>
             <td><button type="button" onClick={handleAccountDeletion}>Delete account</button></td>  
             <h2>My projects</h2>
             <table>
