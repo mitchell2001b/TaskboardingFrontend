@@ -6,7 +6,7 @@ export default function AccessAdminEndpoint()
     
 
     axios
-      .get('http://api-gateway.localhost:9080/projectmodel', {
+      .get('http://51.13.29.1/gateway/projectmodel', {
         headers: {
           'method': 'GET',
           'Content-Type': 'application/json',

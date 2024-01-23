@@ -24,7 +24,7 @@ function RegisterForm()
         return;
       }
       axios
-      .post('http://api-gateway.localhost:9080/register', givenData, {
+      .post('http://51.13.29.1/gateway/register', givenData, {
         headers: {
           'method': 'post',
           'Content-Type': 'application/json',

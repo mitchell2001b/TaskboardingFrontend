@@ -17,7 +17,7 @@ function LoginForm()
       };
 
       axios
-      .post('http://api-gateway.localhost:9080/login', givenData, {
+      .post('http://51.13.29.1/gateway/login', givenData, {
         headers: {
           'method': 'post',
           'Content-Type': 'application/json',
