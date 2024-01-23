@@ -61,7 +61,7 @@ function ProjectForm()
       };
       fetchData();
        axios
-       .post('http://51.13.29.1/gateway/newproject', givenData, {
+       .post('http://api-gateway.localhost:9080/newproject', givenData, {
          headers: {
            'method': 'post',
            'Content-Type': 'application/json',
