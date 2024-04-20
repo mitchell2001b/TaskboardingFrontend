@@ -71,6 +71,7 @@ function ProjectForm()
        .then((response) => {
 
          console.log(JSON.stringify(response.data)); 
+         alert(JSON.stringify(response.data));
          window.location.href = '/profile';
          
        })
