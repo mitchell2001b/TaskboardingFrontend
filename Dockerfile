@@ -1,7 +1,6 @@
-#FROM node:18-alpine as base
+FROM node:18-alpine as base
 
-FROM cypress/base:18.6.0
-
+#FROM cypress/base:18.6.0
 WORKDIR /app
 
 COPY ./package*.json ./
